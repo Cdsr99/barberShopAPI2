@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/BarberShopAPI2.props" />
+</Project>
