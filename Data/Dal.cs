@@ -46,4 +46,11 @@ public class Dal<T> where T : class
         return this._context.Set<T>().FirstOrDefault(condicao);
     }
     #endregion
+    
+    #region SearchForAvailabelDays
+    public IEnumerable<T> SearchForAvailableDays(Func<T, bool> condition)
+    {
+        return this._context.Set<T>().Where(condition);
+    }
+    #endregion
 }

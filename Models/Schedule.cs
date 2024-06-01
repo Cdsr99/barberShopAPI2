@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BarberShopAPI2.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BarberShopAPI2.Models;
 
@@ -27,4 +30,5 @@ public class Schedule
     
     [Column("updated_at")]
     public DateTime? UpdatedAt { get; set; }
+    
 }
