@@ -1,17 +1,30 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BarberShopAPI2.Models;
 
+[Table("schedules")]
 public class Schedule
 {
-    public Schedule(DateTime dateTime, int hour)
-    {
-        Date = dateTime;
-        Hour = hour;
-    }
+    public Schedule() { }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public long Id { get; set; }
 
-    public int Id { get; set; }
+    [Required]
     public DateTime Date { get; set; }
-    public int Hour { get; set; }
-    public string? Status { get; set; }
-    public DateTime Created_at { get; set; }
-    public DateTime Updated_at { get; set; }
+
+    [Required]
+    [MaxLength(255)]
+    public string Hour { get; set; }
+
+    [Required]
+    [MaxLength(255)]
+    public string Status { get; set; }
+    
+    [Column("created_at")]
+    public DateTime? CreatedAt { get; set; }
+    
+    [Column("updated_at")]
+    public DateTime? UpdatedAt { get; set; }
 }
