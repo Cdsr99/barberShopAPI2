@@ -13,7 +13,9 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.6
 ```shell
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
-
+```shell
+dotnet add package Swashbuckle.AspNetCore.Annotations --version 6.6.2
+```
 
 ## Database
 

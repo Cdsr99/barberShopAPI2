@@ -15,10 +15,10 @@
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\Request\" />
       <Folder Include="Controllers\Response\" />
     </ItemGroup>
 
