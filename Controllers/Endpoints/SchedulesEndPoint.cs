@@ -39,13 +39,37 @@ public static class SchedulesEndPoint
             #endregion
             
             #region Creating an available schedule
-            scheduleGroup.MapPost("/index", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
-            {
-                var scheduleModel = new Schedule(body.date, body.hour);
-                dal.Add(scheduleModel);
-                return Results.Ok();
+            scheduleGroup.MapPost("/create", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
+            { 
+                try
+                {
+                    var scheduleModel = new Schedule(body.date, body.hour);
+                    dal.Add(scheduleModel);
+                    return Results.Ok();
+                }
+                catch (Exception error)
+                {
+                    return Results.BadRequest(error);
+                }
+
             }).WithSwaggerDocumentation("Creating an available schedule","A new schedule will be created");
             #endregion
             
+            #region Creating an available schedule
+            scheduleGroup.MapPost("/create", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
+            { 
+                try
+                {
+                    var scheduleModel = new Schedule(body.date, body.hour);
+                    dal.Add(scheduleModel);
+                    return Results.Ok();
+                }
+                catch (Exception error)
+                {
+                    return Results.BadRequest(error);
+                }
+
+            }).WithSwaggerDocumentation("Creating an available schedule","A new schedule will be created");
+            #endregion
     }
 }
