@@ -1,4 +1,4 @@
-# BarberShopAPI2
+# BarberShopAPI2 (Working on it)
 
 Start the project running the follow commands:
 
