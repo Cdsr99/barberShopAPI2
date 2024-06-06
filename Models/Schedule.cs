@@ -7,27 +7,21 @@ namespace BarberShopAPI2.Models;
 [Table("schedules")]
 public class Schedule
 {
-    public Schedule(DateTime date, string hour)
-    {
-        Date = date;
-        Hour = hour;
-    }
-
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public DateTime Date { get; set; }
+    
+    public string? Hour { get; set; }
+    
+    public string? Status { get; set; } = "Available";
 
-    [Required]
-    public string Hour { get; set; }
-
-    [Required] public string Status { get; set; } = "Available";
-
-    [Column("created_at")] public DateTime? CreatedAt { get; set; } = DateTime.Now;
+    [Column("created_at")] 
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
     
     [Column("updated_at")]
-    public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
     
 }

@@ -60,5 +60,13 @@ INSERT INTO bookings (client, schedules_id, status, created_at, updated_at) VALU
 INSERT INTO bookings (client, schedules_id, status, created_at, updated_at) VALUES ('Bob Brown', 3, 'Booked', GETDATE(), GETDATE());
 INSERT INTO bookings (client, schedules_id, status, created_at, updated_at) VALUES ('Charlie Davis', 5, 'Booked', GETDATE(), GETDATE());
 
-```
 
+
+insert into Settings (Parameter, Value) values ('Start','09:00:00');
+insert into Settings (Parameter, Value) values ('End','19:00:00');
+insert into Settings (Parameter, Value) values ('TimePerClient','00:30:00');
+INSERT INTO Settings (Parameter, Value) VALUES ('DaysOff', '["Monday", "Tuesday"]');
+```
+```shell
+dotnet add package Newtonsoft.Json
+```

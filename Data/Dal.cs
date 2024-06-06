@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace BarberShopAPI2.Data;
 
 public class Dal<T> where T : class
@@ -21,6 +23,31 @@ public class Dal<T> where T : class
     {
         this._context.Set<T>().Add(objeto);
         this._context.SaveChanges();
+    }
+    #endregion
+    
+    #region Adding 2
+    public async Task AddRanger(IEnumerable<T> objeto)
+    {
+        try
+        {
+            if (objeto == null)
+            {
+                throw new ArgumentNullException(nameof(objeto), "The object to add cannot be null.");
+            }
+
+            await _context.Set<T>().AddRangeAsync(objeto);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            Console.WriteLine($"Error occurred while adding object: {ex}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error occurred while adding object: {ex}");
+        }
     }
     #endregion
     

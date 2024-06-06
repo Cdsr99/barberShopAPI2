@@ -15,9 +15,12 @@ builder.Services.AddSwaggerGen(c =>
 
 
 builder.Services.
-    AddDbContext<BarberShopContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+    AddDbContext<BarberShopContext>(option => option
+        .UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
 builder.Services.AddTransient<Dal<Schedule>>();
+builder.Services.AddTransient<Dal<Booking>>();
+builder.Services.AddTransient<Dal<Settings>>();
 
 var app = builder.Build();
 

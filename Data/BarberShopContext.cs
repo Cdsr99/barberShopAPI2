@@ -11,4 +11,6 @@ public class BarberShopContext: DbContext
     }
 
     public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<Booking> Bookings { get; set; }
+    public DbSet<Settings> Settings { get; set; }
 }
