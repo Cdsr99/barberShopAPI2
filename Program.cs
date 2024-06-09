@@ -1,4 +1,6 @@
 using BarberShopAPI2.Controllers.Endpoints;
+using BarberShopAPI2.Controllers.Endpoints.Schedules.Create;
+using BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using Microsoft.EntityFrameworkCore;
@@ -32,5 +34,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.AddEndPointSchedules();
+app.AddEndPointSchedulesConsult();
+app.AddEndPointSchedulesCreate();
+app.AddEndPointSchedulesDelete();
+
 app.Run();
