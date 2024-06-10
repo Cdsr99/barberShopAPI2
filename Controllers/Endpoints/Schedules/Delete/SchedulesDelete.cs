@@ -1,6 +1,8 @@
+using System.ComponentModel.DataAnnotations;
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
@@ -49,5 +51,30 @@ public static class SchedulesDelete
             }).WithSwaggerDocumentation("Deleting schedules for a day", "A day of schedule will be delete");
 
         #endregion
+        
+        #region Deleting schedules between days
+
+        scheduleGroup.MapDelete("/day/between",
+            ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayBetweenRequest scheduleRequest) =>
+            {
+                try
+                {
+                    var schedulesDay = scheduleDal.SearchForDay(a => a.Date >= scheduleRequest.startDay && a.Date <= scheduleRequest.endDay);
+
+                    foreach (var schedule in schedulesDay) scheduleDal.Delete(schedule);
+                    
+                    return Results.Ok();
+                }
+                catch (Exception error)
+                {
+                    //Console.WriteLine(error);
+                    Console.WriteLine("Inner Exception: " + error.InnerException?.Message);
+                    return Results.BadRequest($"An error occurred: {error.Message}");
+                }
+            }).WithSwaggerDocumentation("Deleting schedules between days", "The schedules between one day to another will be deleted");
+
+        #endregion
+        
+        
     }
 }

@@ -64,18 +64,8 @@ public class Dal<T> where T : class
     {
         this._context.Set<T>().Remove(objeto);
         this._context.SaveChanges();
-        Console.WriteLine("Deletado o 1");
     }
     #endregion
-    
-    #region Delete async
-    public async Task DeleteAsync(T objeto)
-    {
-        _context.Set<T>().Remove(objeto);
-        await _context.SaveChangesAsync();
-    }
-    #endregion
-    
     
     #region SearchFor
     public T? SearchFor(Func<T, bool> condicao)
