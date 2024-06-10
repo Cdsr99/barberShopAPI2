@@ -28,22 +28,25 @@ public static class SchedulesDelete
 
         #region Deleting schedules for a day
 
-        scheduleGroup.MapDelete("/day",  ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayRequest body) =>
-        {
-            try
+        scheduleGroup.MapDelete("/day",
+            ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayRequest body) =>
             {
-                DateTime day = body.day;
-                var schedulesDay = scheduleDal.SearchFor(a => a.Date == day);
-                scheduleDal.Delete(schedulesDay);
-
-                return Results.Ok(schedulesDay);
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-                return Results.BadRequest($"This is the error: {error.Message}");
-            }
-        }).WithSwaggerDocumentation("Deleting schedules for a day", "A day of schedule will be delete");
+                try
+                {
+                    DateTime day = body.day;
+                    var schedulesDay = scheduleDal.SearchForDay(a => a.Date == day);
+        
+                    foreach (var schedule in schedulesDay) scheduleDal.Delete(schedule);
+                    
+                    return Results.Ok();
+                }
+                catch (Exception error)
+                {
+                    //Console.WriteLine(error);
+                    Console.WriteLine("Inner Exception: " + error.InnerException?.Message);
+                    return Results.BadRequest($"An error occurred: {error.Message}");
+                }
+            }).WithSwaggerDocumentation("Deleting schedules for a day", "A day of schedule will be delete");
 
         #endregion
     }

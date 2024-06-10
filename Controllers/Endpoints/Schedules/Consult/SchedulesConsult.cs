@@ -30,7 +30,7 @@ public static class SchedulesConsult
         scheduleGroup.MapGet("/available", ([FromServices] Dal<Schedule> dal) =>
         {
             DateTime today = DateTime.Now;
-            var result = dal.SearchForAvailableDays(a => a.Date >= today);
+            var result = dal.SearchForAvailableDaysAsync(a => a.Date >= today);
             return Results.Ok(result);
         }).WithSwaggerDocumentation("Getting all schedule available",
             "A list of all available schedules registered in the system will be presented.");
@@ -44,6 +44,17 @@ public static class SchedulesConsult
             var result = dal.SearchFor(a => a.Id == id);
             return Results.Ok(result);
         }).WithSwaggerDocumentation("Getting schedule by id", "The searched ID will be presented.");
+
+        #endregion
+        
+        #region Getting schedule by day
+
+        scheduleGroup.MapGet("/day", ([FromServices] Dal<Schedule> dal,[FromBody] ScheduleDayRequest body) =>
+        {
+            DateTime day = body.day;
+            var result = dal.SearchForDay(a => a.Date == day);
+            return Results.Ok(result);
+        }).WithSwaggerDocumentation("Getting schedule by day", "The day searched will be presented.");
 
         #endregion
         

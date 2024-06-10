@@ -1,3 +1,4 @@
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -5,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BarberShopAPI2.Models;
 
 [Table("schedules")]
-public class Schedule
+public class Schedule 
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
