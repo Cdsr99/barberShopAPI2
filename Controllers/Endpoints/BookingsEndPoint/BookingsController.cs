@@ -22,6 +22,16 @@ public static class BookingsController
 
         #endregion
         
+        #region Getting books by id
+
+        booksGroup.MapGet("/index/{id}", ([FromServices] Dal<Models.Booking> dal, int id) =>
+        {
+            var select = dal.SearchFor(a => a.Id == id);
+            return Results.Ok(select);
+        }).WithSwaggerDocumentation("Getting all books by id", "A list of all books registered in the system will be presented.");
+
+        #endregion
+        
         #region Creating a book
 
         booksGroup.MapPost("/create", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
@@ -47,7 +57,6 @@ public static class BookingsController
 
         booksGroup.MapDelete("/delete/{id}", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id ) =>
         {
-            Console.WriteLine($"This is the id: {id} ***************************************************");
             var selectBooking = booksDal.SearchFor(a => a.Id == id);
             if (selectBooking is null ) return Results.NotFound("Not Found Booking");
 
