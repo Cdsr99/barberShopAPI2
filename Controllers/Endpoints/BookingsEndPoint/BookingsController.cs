@@ -42,6 +42,31 @@ public static class BookingsController
             "Create a book in the system");
 
         #endregion
+        
+        #region Deleting a book
+
+        booksGroup.MapDelete("/delete/{id}", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id ) =>
+        {
+            Console.WriteLine($"This is the id: {id} ***************************************************");
+            var selectBooking = booksDal.SearchFor(a => a.Id == id);
+            if (selectBooking is null ) return Results.NotFound("Not Found Booking");
+
+            Console.WriteLine(selectBooking.SchedulesId);
+            
+            var selectSchedule = schedulesDal.SearchFor(a => a.Id == selectBooking.SchedulesId);
+            if (selectSchedule is null) return Results.NotFound("Not Found Schedule");
+            
+            booksDal.Delete(selectBooking);
+            
+            selectSchedule.Status = "Available";
+            schedulesDal.Update(selectSchedule);
+            
+            return Results.NoContent();
+            
+        }).WithSwaggerDocumentation("Deleting a book",
+            "Deleting a book from the system");
+
+        #endregion
 
     }
 }
