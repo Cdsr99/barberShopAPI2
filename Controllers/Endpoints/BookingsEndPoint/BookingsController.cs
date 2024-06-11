@@ -59,8 +59,6 @@ public static class BookingsController
         {
             var selectBooking = booksDal.SearchFor(a => a.Id == id);
             if (selectBooking is null ) return Results.NotFound("Not Found Booking");
-
-            Console.WriteLine(selectBooking.SchedulesId);
             
             var selectSchedule = schedulesDal.SearchFor(a => a.Id == selectBooking.SchedulesId);
             if (selectSchedule is null) return Results.NotFound("Not Found Schedule");
@@ -74,6 +72,23 @@ public static class BookingsController
             
         }).WithSwaggerDocumentation("Deleting a book",
             "Deleting a book from the system");
+
+        #endregion
+        
+        #region Updating a book status
+
+        booksGroup.MapPut("/update/{id}", ([FromServices] Dal<Models.Booking> booksDal, int id ) =>
+        {
+            var selectBooking = booksDal.SearchFor(a => a.Id == id);
+            if (selectBooking is null ) return Results.NotFound("Not Found Booking");
+            
+            selectBooking.Status = "Attended";
+            booksDal.Update(selectBooking);
+            
+            return Results.NoContent();
+            
+        }).WithSwaggerDocumentation("Updating a book status",
+            "Updating a book from the system");
 
         #endregion
 
