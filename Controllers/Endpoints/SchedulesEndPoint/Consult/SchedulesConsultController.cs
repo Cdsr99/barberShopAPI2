@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BarberShopAPI2.Controllers.Endpoints;
 
-public static class SchedulesConsult
+public static class SchedulesConsultController
 {
     public static void AddEndPointSchedulesConsult(this WebApplication app)
     {
@@ -53,6 +53,7 @@ public static class SchedulesConsult
         {
             DateTime day = body.day;
             var result = dal.SearchForDay(a => a.Date == day);
+            if (result == null || !result.Any()) return Results.NotFound();
             return Results.Ok(result);
         }).WithSwaggerDocumentation("Getting schedule by day", "The day searched will be presented.");
 

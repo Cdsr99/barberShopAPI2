@@ -1,9 +1,11 @@
 using BarberShopAPI2.Controllers.Endpoints;
 using BarberShopAPI2.Controllers.Endpoints.Schedules.Create;
 using BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
+using BarberShopAPI2.Controllers.Endpoints.Booking;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using Microsoft.EntityFrameworkCore;
+using Booking = BarberShopAPI2.Models.Booking;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,5 +39,6 @@ app.UseHttpsRedirection();
 app.AddEndPointSchedulesConsult();
 app.AddEndPointSchedulesCreate();
 app.AddEndPointSchedulesDelete();
+app.AddEndPointBooking();
 
 app.Run();

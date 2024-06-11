@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace BarberShopAPI2.Controllers.Endpoints.Schedules.Create;
 
-public static class SchedulesCreate
+public static class SchedulesCreateController
 {
     public static void AddEndPointSchedulesCreate(this WebApplication app)
     {

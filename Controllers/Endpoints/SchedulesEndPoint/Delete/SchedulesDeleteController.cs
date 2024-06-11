@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
 
-public static class SchedulesDelete
+public static class SchedulesDeleteController
 {
     public static void AddEndPointSchedulesDelete(this WebApplication app)
     {
