@@ -70,3 +70,11 @@ INSERT INTO Settings (Parameter, Value) VALUES ('DaysOff', '["Monday", "Tuesday"
 ```shell
 dotnet add package Newtonsoft.Json
 ```
+
+NuGet's packeges to authenticate
+
+```shell
+dotnet add package Microsoft.Extensions.Identity.Stores --version 8.0.6
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version 8.0.6
+
+```

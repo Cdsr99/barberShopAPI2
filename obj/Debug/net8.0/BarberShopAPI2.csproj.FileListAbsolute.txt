@@ -140,3 +140,14 @@
 /home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/obj/Debug/net8.0/ref/BarberShopAPI2.dll
 /home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Castle.Core.dll
 /home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.Extensions.Identity.Core.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.Extensions.Identity.Stores.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/AutoMapper.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/bin/Debug/net8.0/Newtonsoft.Json.Bson.dll
