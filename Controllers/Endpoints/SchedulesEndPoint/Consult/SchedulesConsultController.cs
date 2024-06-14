@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -15,7 +16,7 @@ public static class SchedulesConsultController
 
         #region Getting all schedule
 
-        scheduleGroup.MapGet("/index", ([FromServices] Dal<Schedule> dal) =>
+        scheduleGroup.MapGet("/index", [Authorize]([FromServices] Dal<Schedule> dal) =>
             {
                 var result = dal.Show();
                 return Results.Ok(result);
@@ -27,7 +28,7 @@ public static class SchedulesConsultController
 
         #region Getting all schedule available
 
-        scheduleGroup.MapGet("/available", ([FromServices] Dal<Schedule> dal) =>
+        scheduleGroup.MapGet("/available", [Authorize]([FromServices] Dal<Schedule> dal) =>
         {
             DateTime today = DateTime.Now;
             var result = dal.SearchForAvailableDaysAsync(a => a.Date >= today);
@@ -39,7 +40,7 @@ public static class SchedulesConsultController
 
         #region Getting schedule by id
 
-        scheduleGroup.MapGet("/{id}", ([FromServices] Dal<Schedule> dal, int id) =>
+        scheduleGroup.MapGet("/{id}", [Authorize]([FromServices] Dal<Schedule> dal, int id) =>
         {
             var result = dal.SearchFor(a => a.Id == id);
             return Results.Ok(result);

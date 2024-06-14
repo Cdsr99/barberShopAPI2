@@ -10,6 +10,7 @@ using BarberShopAPI2.Models;
 using BarberShopAPI2.Profile;
 using BarberShopAPI2.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -56,6 +57,7 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero
     };
 });
+builder.Services.AddAuthorization();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(UserProfile));
@@ -90,4 +92,6 @@ app.AddEndPointBooking();
 app.AddEndPointUserCreate();
 app.AddEndPointUserLogin();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.Run();

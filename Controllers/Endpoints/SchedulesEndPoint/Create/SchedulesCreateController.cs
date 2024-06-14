@@ -1,6 +1,7 @@
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -14,7 +15,7 @@ public static class SchedulesCreateController
         
         #region Creating schedules for a single time
 
-        scheduleGroup.MapPost("/hour", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
+        scheduleGroup.MapPost("/hour", [Authorize]([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
         {
             try
             {

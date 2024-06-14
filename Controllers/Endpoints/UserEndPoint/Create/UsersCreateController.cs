@@ -3,6 +3,7 @@ using BarberShopAPI2.Controllers.Request.UsersRequests;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using BarberShopAPI2.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ public static class UsersCreateController
         #region Creating an user
 
         userGroup.MapPost("/create",
-            async ([FromServices] Dal<User> dal, [FromBody] UserCreateRequest userCreateRequest) =>
+            [Authorize]  async ([FromServices] Dal<User> dal, [FromBody] UserCreateRequest userCreateRequest) =>
             {
                 await _userService.Create(userCreateRequest);
                 return Results.Ok("The user has been created successfully!");
