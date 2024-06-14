@@ -8,5 +8,6 @@ public class UserProfile : AutoMapper.Profile
     public UserProfile()
     {
         CreateMap<UserCreateRequest, User>();
+        CreateMap<UserLoginRequest, User>();
     }
 }

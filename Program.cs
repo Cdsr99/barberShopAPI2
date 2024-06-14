@@ -4,6 +4,7 @@ using BarberShopAPI2.Controllers.Endpoints.Schedules.Create;
 using BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
 using BarberShopAPI2.Controllers.Endpoints.Booking;
 using BarberShopAPI2.Controllers.Endpoints.UserEndPoint;
+using BarberShopAPI2.Controllers.Endpoints.UserLoginEndPoint;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using BarberShopAPI2.Profile;
@@ -65,7 +66,10 @@ builder.Services.AddTransient<Dal<Schedule>>();
 builder.Services.AddTransient<Dal<Booking>>();
 builder.Services.AddTransient<Dal<Settings>>();
 builder.Services.AddTransient<Dal<User>>();
+
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -84,5 +88,6 @@ app.AddEndPointSchedulesCreate();
 app.AddEndPointSchedulesDelete();
 app.AddEndPointBooking();
 app.AddEndPointUserCreate();
+app.AddEndPointUserLogin();
 
 app.Run();

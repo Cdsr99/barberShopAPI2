@@ -10,14 +10,19 @@ public class UserService
     private IMapper _mapper;
     private UserManager<User> _userManager;
     private SignInManager<User> _signManager;
-    
-    public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signManager)
+    private TokenService _tokenService;
+
+    public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signManager, TokenService tokenService)
     {
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-        _signManager = signManager ?? throw new ArgumentNullException(nameof(signManager));
+        _mapper = mapper;
+        _userManager = userManager;
+        _signManager = signManager;
+        _tokenService = tokenService;
     }
-    
+
+
+    #region Creating user
+
     public async  Task Create(UserCreateRequest dto)
     {
         User user = _mapper.Map<User>(dto);
@@ -27,8 +32,37 @@ public class UserService
 
         if (!result.Succeeded)
         {
-            throw new ApplicationException($"Falha ao cadastrar o usuário: {result}");
+            throw new ApplicationException($"Error to create the user: {result}");
         }
     }
+
+    #endregion
+    
+    #region Authenticate user
+
+    public async Task<string> Login(UserLoginRequest dto)
+    {
+        
+        var result = await _signManager.PasswordSignInAsync(dto.UserName, dto.Password, false, false);
+
+        Console.WriteLine($"This is result of result: {result}");
+        
+        if (!result.Succeeded)
+        {
+            throw new ApplicationException("The login or password is wrong");
+        }
+
+        var userToken = _signManager
+            .UserManager
+            .Users
+            .FirstOrDefault(a => a.NormalizedUserName == dto.UserName);
+
+        var token = _tokenService.GenerateToken(userToken);
+
+        return token;
+    }
+
+    #endregion
+
     
 }
