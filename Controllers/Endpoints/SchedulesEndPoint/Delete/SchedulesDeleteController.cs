@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ public static class SchedulesDeleteController
 
         #region Deleting by Id
 
-        scheduleGroup.MapDelete("/{id}", ([FromServices] Dal<Schedule> dal, int id) =>
+        scheduleGroup.MapDelete("/{id}", [Authorize] ([FromServices] Dal<Schedule> dal, int id) =>
             {
                 var select = dal.SearchFor(a => a.Id == id);
                 if (select == null) return Results.NotFound();
@@ -31,7 +32,7 @@ public static class SchedulesDeleteController
         #region Deleting schedules for a day
 
         scheduleGroup.MapDelete("/day",
-            ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayRequest body) =>
+            [Authorize] ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayRequest body) =>
             {
                 try
                 {
@@ -55,7 +56,7 @@ public static class SchedulesDeleteController
         #region Deleting schedules between days
 
         scheduleGroup.MapDelete("/day/between",
-            ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayBetweenRequest scheduleRequest) =>
+            [Authorize] ([FromServices] Dal<Schedule> scheduleDal, [FromBody] ScheduleDayBetweenRequest scheduleRequest) =>
             {
                 try
                 {

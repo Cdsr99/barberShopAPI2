@@ -2,6 +2,7 @@ using BarberShopAPI2.Controllers.Request.BooksRequest;
 using BarberShopAPI2.Data;
 using Microsoft.AspNetCore.Mvc;
 using BarberShopAPI2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BarberShopAPI2.Controllers.Endpoints.Booking;
 
@@ -13,7 +14,7 @@ public static class BookingsController
 
         #region Getting all books
 
-        booksGroup.MapGet("/index", ([FromServices] Dal<Models.Booking> dal) =>
+        booksGroup.MapGet("/index", [Authorize] ([FromServices] Dal<Models.Booking> dal) =>
         {
             var select = dal.Show();
             return Results.Ok(select);
@@ -24,7 +25,7 @@ public static class BookingsController
         
         #region Getting books by id
 
-        booksGroup.MapGet("/index/{id}", ([FromServices] Dal<Models.Booking> dal, int id) =>
+        booksGroup.MapGet("/index/{id}", [Authorize]([FromServices] Dal<Models.Booking> dal, int id) =>
         {
             var select = dal.SearchFor(a => a.Id == id);
             return Results.Ok(select);
@@ -34,7 +35,7 @@ public static class BookingsController
         
         #region Creating a book
 
-        booksGroup.MapPost("/create", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
+        booksGroup.MapPost("/create", [Authorize]([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
         {
             var schedulesId = schedulesDal.SearchFor(a => a.Id == booksCreateRequest.schedulesId);
             if (schedulesId is null ) return Results.NotFound();
@@ -55,7 +56,7 @@ public static class BookingsController
         
         #region Deleting a book
 
-        booksGroup.MapDelete("/delete/{id}", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id ) =>
+        booksGroup.MapDelete("/delete/{id}", [Authorize]([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id ) =>
         {
             var selectBooking = booksDal.SearchFor(a => a.Id == id);
             if (selectBooking is null ) return Results.NotFound("Not Found Booking");
@@ -77,7 +78,7 @@ public static class BookingsController
         
         #region Updating a book status
 
-        booksGroup.MapPut("/update/{id}", ([FromServices] Dal<Models.Booking> booksDal, int id ) =>
+        booksGroup.MapPut("/update/{id}", [Authorize] ([FromServices] Dal<Models.Booking> booksDal, int id ) =>
         {
             var selectBooking = booksDal.SearchFor(a => a.Id == id);
             if (selectBooking is null ) return Results.NotFound("Not Found Booking");
