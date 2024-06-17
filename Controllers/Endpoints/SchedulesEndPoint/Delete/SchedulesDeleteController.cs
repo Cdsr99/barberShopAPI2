@@ -12,7 +12,7 @@ public static class SchedulesDeleteController
 {
     public static void AddEndPointSchedulesDelete(this WebApplication app)
     {
-        var scheduleGroup = app.MapGroup("/schedule/delete");
+        var scheduleGroup = app.MapGroup("/schedule/delete").WithTags("Schedule");
 
         #region Deleting by Id
 

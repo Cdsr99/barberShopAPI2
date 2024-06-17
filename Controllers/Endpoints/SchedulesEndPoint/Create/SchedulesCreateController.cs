@@ -11,7 +11,7 @@ public static class SchedulesCreateController
 {
     public static void AddEndPointSchedulesCreate(this WebApplication app)
     {
-        var scheduleGroup = app.MapGroup("/schedule/create");
+        var scheduleGroup = app.MapGroup("/schedule/create").WithTags("Schedule");
         
         #region Creating schedules for a single time
 

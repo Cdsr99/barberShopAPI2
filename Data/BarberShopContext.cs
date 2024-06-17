@@ -22,9 +22,6 @@ public class BarberShopContext: IdentityDbContext<User>
             .HasIndex(b => b.Email)
             .IsUnique();
         
-        modelBuilder.Entity<User>()
-            .HasIndex(b => b.EmailConfirmed)
-            .IsUnique();
         
         modelBuilder.Entity<User>()
             .HasIndex(b => b.NormalizedEmail)

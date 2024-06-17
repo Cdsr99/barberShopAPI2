@@ -9,5 +9,7 @@ public class UserProfile : AutoMapper.Profile
     {
         CreateMap<UserCreateRequest, User>();
         CreateMap<UserLoginRequest, User>();
+        CreateMap<UserUpdateRequest, User>();
     }
 }
+

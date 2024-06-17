@@ -2,6 +2,8 @@ using AutoMapper;
 using BarberShopAPI2.Controllers.Request.UsersRequests;
 using BarberShopAPI2.Models;
 using BarberShopAPI2.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +18,7 @@ public static class UsersLoginController
 
     public static void AddEndPointUserLogin(this WebApplication app)
     {
-        var userGroup = app.MapGroup("/user");
+        var userGroup = app.MapGroup("/user").WithTags("User");
 
         #region Authenticate an User
 
@@ -37,5 +39,6 @@ public static class UsersLoginController
             });
 
         #endregion
+        
     }
 }

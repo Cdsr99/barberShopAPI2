@@ -25,15 +25,23 @@ public class UserService
 
     public async  Task Create(UserCreateRequest dto)
     {
-        User user = _mapper.Map<User>(dto);
-        
-        
-        IdentityResult result = await _userManager.CreateAsync(user, dto.password);
-
-        if (!result.Succeeded)
+        try
         {
-            throw new ApplicationException($"Error to create the user: {result}");
+            User user = _mapper.Map<User>(dto);
+            
+            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException($"Error to create the user: {result}");
+            }
         }
+        catch ( Exception e)
+        {
+            Console.WriteLine($"========================================= {e.Message} ================");
+            throw;
+        }
+
     }
 
     #endregion
@@ -63,6 +71,5 @@ public class UserService
     }
 
     #endregion
-
     
 }

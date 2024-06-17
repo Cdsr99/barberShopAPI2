@@ -29,7 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\Endpoints\UserEndPoint\Consult\" />
       <Folder Include="Controllers\Endpoints\UserEndPoint\Delete\" />
       <Folder Include="Controllers\Response\" />
       <Folder Include="Migrations\" />

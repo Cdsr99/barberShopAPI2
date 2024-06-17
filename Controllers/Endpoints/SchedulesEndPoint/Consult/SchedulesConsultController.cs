@@ -12,7 +12,7 @@ public static class SchedulesConsultController
 {
     public static void AddEndPointSchedulesConsult(this WebApplication app)
     {
-        var scheduleGroup = app.MapGroup("/schedule");
+        var scheduleGroup = app.MapGroup("/schedule").WithTags("Schedule");
 
         #region Getting all schedule
 
