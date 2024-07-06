@@ -71,6 +71,17 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin() // Adicione aqui a origem da sua aplicação Blazor
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+               
+    });
+}); 
+
 
 
 
@@ -115,5 +126,6 @@ app.AddEndPointBookingDelete();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("CorsPolicy");
 
 app.Run();
