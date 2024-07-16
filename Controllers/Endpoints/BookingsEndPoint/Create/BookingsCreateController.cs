@@ -14,7 +14,7 @@ public static class BookingsCreateController
         
         #region Creating a book
 
-        booksGroup.MapPost("/create", [Authorize]([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
+        booksGroup.MapPost("/create", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
         {
             var schedulesId = schedulesDal.SearchFor(a => a.Id == booksCreateRequest.schedulesId);
             if (schedulesId is null ) return Results.NotFound();

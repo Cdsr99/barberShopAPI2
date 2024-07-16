@@ -15,7 +15,7 @@ public static class BookingsDeleteController
         #region Deleting a book
 
         booksGroup.MapDelete("/delete/{id}",
-            [Authorize]([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id) =>
+            ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id) =>
             {
                 var selectBooking = booksDal.SearchFor(a => a.Id == id);
                 if (selectBooking is null) return Results.NotFound("Not Found Booking");

@@ -36,11 +36,12 @@ builder.Services.
     AddDbContext<BarberShopContext>(option => option
         .UseLazyLoadingProxies().UseSqlServer(connString));
 
-
+/*
 builder.Services
     .AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<BarberShopContext>()
     .AddDefaultTokenProviders();
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -58,6 +59,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 builder.Services.AddAuthorization();
+*/
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(UserProfile));
@@ -67,9 +69,9 @@ builder.Services.AddTransient<Dal<Booking>>();
 builder.Services.AddTransient<Dal<Settings>>();
 builder.Services.AddTransient<Dal<User>>();
 
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<TokenService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
+//builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<TokenService>();
+//builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddCors(options =>
 {
@@ -95,7 +97,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+//app.UseAuthentication();
 
 #region User
 
@@ -124,8 +126,8 @@ app.AddEndPointBookingDelete();
 #endregion
 
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 app.UseCors("CorsPolicy");
 
 app.Run();

@@ -14,7 +14,7 @@ public static class UserConsultController
         #region Getting users
 
         userGroup.MapGet("/index",
-            [Authorize] ([FromServices] Dal<User> dal) =>
+            ([FromServices] Dal<User> dal) =>
             {
                 var select = dal.Show();
                 return select;

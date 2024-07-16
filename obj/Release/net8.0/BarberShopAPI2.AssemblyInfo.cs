@@ -13,7 +13,7 @@ using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("19926074-9335-46b6-a5a6-6aacda9e04b4")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BarberShopAPI2")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b916354c1b1e0adcf2fda50afa0466fe1de4a89")]
 [assembly: System.Reflection.AssemblyProductAttribute("BarberShopAPI2")]

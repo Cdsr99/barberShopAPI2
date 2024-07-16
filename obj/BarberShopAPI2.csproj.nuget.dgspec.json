@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/BarberShopAPI2.csproj": {}
+    "C:\\Users\\caios\\Documents\\GitHub\\barberShopAPI2\\BarberShopAPI2.csproj": {}
   },
   "projects": {
-    "/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/BarberShopAPI2.csproj": {
+    "C:\\Users\\caios\\Documents\\GitHub\\barberShopAPI2\\BarberShopAPI2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/BarberShopAPI2.csproj",
+        "projectUniqueName": "C:\\Users\\caios\\Documents\\GitHub\\barberShopAPI2\\BarberShopAPI2.csproj",
         "projectName": "BarberShopAPI2",
-        "projectPath": "/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/BarberShopAPI2.csproj",
-        "packagesPath": "/home/rodrigues/.nuget/packages/",
-        "outputPath": "/home/rodrigues/Documents/github/BarberShopAPI2/BarberShopAPI2/obj/",
+        "projectPath": "C:\\Users\\caios\\Documents\\GitHub\\barberShopAPI2\\BarberShopAPI2.csproj",
+        "packagesPath": "C:\\Users\\caios\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\caios\\Documents\\GitHub\\barberShopAPI2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/rodrigues/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\caios\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -120,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.105/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

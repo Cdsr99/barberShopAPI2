@@ -15,7 +15,7 @@ public static class SchedulesCreateController
         
         #region Creating schedules for a single time
 
-        scheduleGroup.MapPost("/hour", [Authorize]([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
+        scheduleGroup.MapPost("/hour", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
         {
             try
             {
@@ -37,7 +37,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a day
 
-        scheduleGroup.MapPost("/day", [Authorize] async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/day",  async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {
@@ -93,7 +93,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a week
 
-        scheduleGroup.MapPost("/week", [Authorize] async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/week",  async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {
@@ -170,7 +170,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a month
 
-        scheduleGroup.MapPost("/month", [Authorize] async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/month",  async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {

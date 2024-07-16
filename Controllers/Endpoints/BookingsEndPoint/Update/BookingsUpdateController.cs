@@ -13,7 +13,7 @@ public static class BookingsUpdateController
         
         #region Updating a book status
 
-        booksGroup.MapPut("/update/{id}", [Authorize] ([FromServices] Dal<Models.Booking> booksDal, int id ) =>
+        booksGroup.MapPut("/update/{id}", ([FromServices] Dal<Models.Booking> booksDal, int id ) =>
         {
             var selectBooking = booksDal.SearchFor(a => a.Id == id);
             if (selectBooking is null ) return Results.NotFound("Not Found Booking");

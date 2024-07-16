@@ -16,7 +16,7 @@ public static class BookingsConsultController
 
         #region Getting all books
 
-        booksGroup.MapGet("/index", [Authorize] ([FromServices] Dal<Models.Booking> dal) =>
+        booksGroup.MapGet("/index", ([FromServices] Dal<Models.Booking> dal) =>
         {
             var select = dal.Show();
             return Results.Ok(select);
@@ -27,7 +27,7 @@ public static class BookingsConsultController
         
         #region Getting books by id
 
-        booksGroup.MapGet("/index/{id}", [Authorize]([FromServices] Dal<Models.Booking> dal, int id) =>
+        booksGroup.MapGet("/index/{id}", ([FromServices] Dal<Models.Booking> dal, int id) =>
         {
             var select = dal.SearchFor(a => a.Id == id);
             return Results.Ok(select);

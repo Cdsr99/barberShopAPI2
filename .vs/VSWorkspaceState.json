@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Controllers\\Endpoints",
+    "\\Controllers\\Endpoints\\SchedulesEndPoint",
+    "\\Controllers\\Endpoints\\SchedulesEndPoint\\Create",
+    "\\Controllers\\Endpoints\\UserEndPoint",
+    "\\Controllers\\Endpoints\\UserEndPoint\\Update",
+    "\\Data",
+    "\\Profile",
+    "\\Services"
+  ],
+  "SelectedNode": "\\Controllers\\Endpoints\\UserEndPoint\\Update\\UsersUpdateController.cs",
+  "PreviewInSolutionExplorer": false
+}

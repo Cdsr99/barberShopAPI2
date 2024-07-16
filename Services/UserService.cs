@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BarberShopAPI2.Services;
 
+
 public class UserService
 {
+    
     private IMapper _mapper;
     private UserManager<User> _userManager;
     private SignInManager<User> _signManager;
@@ -19,6 +21,7 @@ public class UserService
         _signManager = signManager;
         _tokenService = tokenService;
     }
+    
 
 
     #region Creating user
@@ -38,7 +41,7 @@ public class UserService
         }
         catch ( Exception e)
         {
-            Console.WriteLine($"========================================= {e.Message} ================");
+            Console.WriteLine($"{e.Message}");
             throw;
         }
 

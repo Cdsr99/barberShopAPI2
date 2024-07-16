@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace BarberShopAPI2.Data;
 using Microsoft.EntityFrameworkCore;
 
-public class BarberShopContext: IdentityDbContext<User>
+public class BarberShopContext: DbContext //IdentityDbContext<User>
 {
     public BarberShopContext(DbContextOptions<BarberShopContext> options) : base(options)
     {
@@ -26,10 +26,11 @@ public class BarberShopContext: IdentityDbContext<User>
         modelBuilder.Entity<User>()
             .HasIndex(b => b.NormalizedEmail)
             .IsUnique();
-        
+        /*
         modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(l => new { l.LoginProvider, l.ProviderKey });
         modelBuilder.Entity<IdentityUserRole<string>>().HasKey(r => new { r.UserId, r.RoleId });
         modelBuilder.Entity<IdentityUserToken<string>>().HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+        */
     }
 
     public DbSet<Schedule> Schedules { get; set; }
