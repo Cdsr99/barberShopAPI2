@@ -16,17 +16,25 @@ public static class BookingsCreateController
 
         booksGroup.MapPost("/create", ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, [FromBody] BooksCreateRequest booksCreateRequest ) =>
         {
-            var schedulesId = schedulesDal.SearchFor(a => a.Id == booksCreateRequest.schedulesId);
-            if (schedulesId is null ) return Results.NotFound();
+            try
+            {
+                var schedulesId = schedulesDal.SearchFor(a => a.Id == booksCreateRequest.schedulesId);
+                if (schedulesId is null) return Results.NotFound();
 
-            Models.Booking book = new Models.Booking(booksCreateRequest.clientName, booksCreateRequest.clientsPhoneNumber, booksCreateRequest.schedulesId);
-            
-            booksDal.Add(book);
-            schedulesId.Status = "Booked";
-            schedulesDal.Update(schedulesId);
-            
-            
-            return Results.Ok();
+                Models.Booking book = new Models.Booking(booksCreateRequest.clientName, booksCreateRequest.clientsPhoneNumber, booksCreateRequest.schedulesId);
+
+                booksDal.Add(book);
+                schedulesId.Status = "Booked";
+                schedulesDal.Update(schedulesId);
+
+
+                return Results.Ok();
+            }
+            catch (Exception error)
+            {
+                return Results.BadRequest(error);
+            }
+
             
         }).WithSwaggerDocumentation("Creating a book",
             "Create a book in the system");

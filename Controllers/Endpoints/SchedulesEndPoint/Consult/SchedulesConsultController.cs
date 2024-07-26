@@ -31,7 +31,7 @@ public static class SchedulesConsultController
         scheduleGroup.MapGet("/available",([FromServices] Dal<Schedule> dal) =>
         {
             DateTime today = DateTime.Now;
-            var result = dal.SearchForAvailableDaysAsync(a => a.Date >= today);
+            var result = dal.SearchForAvailableDaysAsync(a => a.Date >= today && a.Status == "Available");
 
             var formattedResult = result.Select(schedule => new {
                 Id = schedule.Id,
