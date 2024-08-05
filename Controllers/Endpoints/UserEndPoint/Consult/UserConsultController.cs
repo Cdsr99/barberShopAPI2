@@ -1,6 +1,5 @@
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BarberShopAPI2.Controllers.Endpoints.UserEndPoint.Consult;

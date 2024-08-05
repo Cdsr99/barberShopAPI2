@@ -1,27 +1,28 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 using BarberShopAPI2.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BarberShopAPI2.Services;
 
-public class TokenService: ITokenService
+public class TokenService : ITokenService
 {
-    private IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
 
     public TokenService(IConfiguration configuration)
     {
         _configuration = configuration;
     }
+
     public string GenerateToken(User usuario)
     {
-        Claim[] claims = new Claim[]
+        Claim[] claims =
         {
-            new Claim("username", usuario.UserName),
-            new Claim("id", usuario.Id),
-            new Claim("normalizedUserName", usuario.NormalizedUserName),
-            new Claim("profile", usuario.Profile),
+            new("username", usuario.UserName),
+            new("id", usuario.Id),
+            new("normalizedUserName", usuario.NormalizedUserName),
+            new("profile", usuario.Profile)
         };
 
         var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SymmetricSecurityKey"]));

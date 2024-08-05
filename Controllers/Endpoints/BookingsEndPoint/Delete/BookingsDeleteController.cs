@@ -1,8 +1,6 @@
-using BarberShopAPI2.Controllers.Request.BooksRequest;
 using BarberShopAPI2.Data;
-using Microsoft.AspNetCore.Mvc;
 using BarberShopAPI2.Models;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BarberShopAPI2.Controllers.Endpoints.Booking;
 
@@ -15,7 +13,7 @@ public static class BookingsDeleteController
         #region Deleting a book
 
         booksGroup.MapDelete("/delete/{id}",
-            ([FromServices] Dal<Models.Booking> booksDal, Dal<Models.Schedule> schedulesDal, int id) =>
+            ([FromServices] Dal<Models.Booking> booksDal, Dal<Schedule> schedulesDal, int id) =>
             {
                 var selectBooking = booksDal.SearchFor(a => a.Id == id);
                 if (selectBooking is null) return Results.NotFound("Not Found Booking");

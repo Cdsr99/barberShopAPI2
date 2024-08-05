@@ -5,63 +5,53 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BarberShopAPI2.Services;
 
-
 public class UserService
 {
-    
-    private IMapper _mapper;
-    private UserManager<User> _userManager;
-    private SignInManager<User> _signManager;
-    private TokenService _tokenService;
+    private readonly IMapper _mapper;
+    private readonly SignInManager<User> _signManager;
+    private readonly TokenService _tokenService;
+    private readonly UserManager<User> _userManager;
 
-    public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signManager, TokenService tokenService)
+    public UserService(IMapper mapper, UserManager<User> userManager, SignInManager<User> signManager,
+        TokenService tokenService)
     {
         _mapper = mapper;
         _userManager = userManager;
         _signManager = signManager;
         _tokenService = tokenService;
     }
-    
 
 
     #region Creating user
 
-    public async  Task Create(UserCreateRequest dto)
+    public async Task Create(UserCreateRequest dto)
     {
         try
         {
-            User user = _mapper.Map<User>(dto);
-            
-            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+            var user = _mapper.Map<User>(dto);
 
-            if (!result.Succeeded)
-            {
-                throw new ApplicationException($"Error to create the user: {result}");
-            }
+            var result = await _userManager.CreateAsync(user, dto.Password);
+
+            if (!result.Succeeded) throw new ApplicationException($"Error to create the user: {result}");
         }
-        catch ( Exception e)
+        catch (Exception e)
         {
             Console.WriteLine($"{e.Message}");
             throw;
         }
-
     }
 
     #endregion
-    
+
     #region Authenticate user
 
     public async Task<string> Login(UserLoginRequest dto)
     {
-        
         var result = await _signManager.PasswordSignInAsync(dto.UserName, dto.Password, false, false);
 
         Console.WriteLine($"This is result of result: {result}");
-        
-        if (!result.Succeeded)
-        {
-            throw new ApplicationException("The login or password is wrong");
-        }
+
+        if (!result.Succeeded) throw new ApplicationException("The login or password is wrong");
 
         var userToken = _signManager
             .UserManager
@@ -74,5 +64,4 @@ public class UserService
     }
 
     #endregion
-    
 }

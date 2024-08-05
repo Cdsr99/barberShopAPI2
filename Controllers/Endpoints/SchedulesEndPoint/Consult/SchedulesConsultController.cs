@@ -1,10 +1,7 @@
-using Newtonsoft.Json;
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace BarberShopAPI2.Controllers.Endpoints;
 
@@ -28,19 +25,19 @@ public static class SchedulesConsultController
 
         #region Getting all schedule available
 
-        scheduleGroup.MapGet("/available",([FromServices] Dal<Schedule> dal) =>
+        scheduleGroup.MapGet("/available", ([FromServices] Dal<Schedule> dal) =>
         {
-            DateTime today = DateTime.Now;
+            var today = DateTime.Now;
             var result = dal.SearchForAvailableDaysAsync(a => a.Date >= today && a.Status == "Available");
 
-            var formattedResult = result.Select(schedule => new {
-                Id = schedule.Id,
+            var formattedResult = result.Select(schedule => new
+            {
+                schedule.Id,
                 Date = schedule.Date.ToString("dd/MM"),
-                Hour = schedule.Hour,
+                schedule.Hour
             });
 
             return Results.Ok(formattedResult);
-
         }).WithSwaggerDocumentation("Getting all schedule available",
             "A list of all available schedules registered in the system will be presented.");
 
@@ -55,18 +52,17 @@ public static class SchedulesConsultController
         }).WithSwaggerDocumentation("Getting schedule by id", "The searched ID will be presented.");
 
         #endregion
-        
+
         #region Getting schedule by day
 
-        scheduleGroup.MapGet("/day", ([FromServices] Dal<Schedule> dal,[FromBody] ScheduleDayRequest body) =>
+        scheduleGroup.MapGet("/day", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleDayRequest body) =>
         {
-            DateTime day = body.day;
+            var day = body.day;
             var result = dal.SearchForDay(a => a.Date == day);
             if (result == null || !result.Any()) return Results.NotFound();
             return Results.Ok(result);
         }).WithSwaggerDocumentation("Getting schedule by day", "The day searched will be presented.");
 
         #endregion
-        
     }
 }

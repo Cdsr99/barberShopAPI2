@@ -10,9 +10,10 @@ namespace BarberShopAPI2.Controllers.Endpoints.UserEndPoint;
 public static class UsersCreateController
 {
     private static IMapper _mapper;
+
     private static UserManager<User> _userManager;
     //private static UserService _userService;
-    
+
 
     public static void AddEndPointUserCreate(this WebApplication app)
     {
@@ -21,7 +22,7 @@ public static class UsersCreateController
         #region Creating an user
 
         userGroup.MapPost("/create",
-             async ([FromServices] UserService _userService, [FromBody] UserCreateRequest userCreateRequest) =>
+            async ([FromServices] UserService _userService, [FromBody] UserCreateRequest userCreateRequest) =>
             {
                 try
                 {
@@ -33,10 +34,8 @@ public static class UsersCreateController
                     Console.WriteLine($"Deu ruim aqui já: {e.Message}");
                     throw;
                 }
-
             });
 
         #endregion
-        
     }
 }

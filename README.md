@@ -13,6 +13,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.6
 ```shell
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
+
 ```shell
 dotnet add package Swashbuckle.AspNetCore.Annotations --version 6.6.2
 ```
@@ -45,6 +46,7 @@ CREATE TABLE bookings (
 ```
 
 Insert
+
 ```shell
 -- Inserts for schedules table
 INSERT INTO schedules (date, hour, status, created_at, updated_at) VALUES ('2024-06-01', '10:00', 'Available', GETDATE(), GETDATE());
@@ -67,6 +69,7 @@ insert into Settings (Parameter, Value) values ('End','19:00:00');
 insert into Settings (Parameter, Value) values ('TimePerClient','00:30:00');
 INSERT INTO Settings (Parameter, Value) VALUES ('DaysOff', '["Monday", "Tuesday"]');
 ```
+
 ```shell
 dotnet add package Newtonsoft.Json
 ```

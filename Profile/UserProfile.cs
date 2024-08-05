@@ -12,4 +12,3 @@ public class UserProfile : AutoMapper.Profile
         CreateMap<UserUpdateRequest, User>();
     }
 }
-

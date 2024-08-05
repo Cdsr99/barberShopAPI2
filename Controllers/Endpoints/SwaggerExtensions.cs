@@ -1,10 +1,11 @@
-namespace BarberShopAPI2.Controllers.Endpoints;
 using Swashbuckle.AspNetCore.Annotations;
-using Microsoft.AspNetCore.Builder;
+
+namespace BarberShopAPI2.Controllers.Endpoints;
 
 public static class SwaggerExtensions
 {
-    public static RouteHandlerBuilder WithSwaggerDocumentation(this RouteHandlerBuilder builder, string summary, string description)
+    public static RouteHandlerBuilder WithSwaggerDocumentation(this RouteHandlerBuilder builder, string summary,
+        string description)
     {
         return builder
             .WithMetadata(new SwaggerOperationAttribute(summary, description))

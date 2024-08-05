@@ -4,7 +4,6 @@ using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace BarberShopAPI2.Controllers.Endpoints;
 
@@ -33,25 +32,13 @@ public static class UsersUpdateController
                     user.EmailConfirmed = false;
                 }
 
-                if (userUpdateRequest.Password != null)
-                {
-                    user.PasswordHash = userUpdateRequest.Password;
-                }
+                if (userUpdateRequest.Password != null) user.PasswordHash = userUpdateRequest.Password;
 
-                if (userUpdateRequest.PhoneNumber != null)
-                {
-                    user.PhoneNumber = userUpdateRequest.PhoneNumber;
-                }
+                if (userUpdateRequest.PhoneNumber != null) user.PhoneNumber = userUpdateRequest.PhoneNumber;
 
-                if (userUpdateRequest.Name != null)
-                {
-                    user.Name = userUpdateRequest.Name;
-                }
+                if (userUpdateRequest.Name != null) user.Name = userUpdateRequest.Name;
 
-                if (userUpdateRequest.Profile != null)
-                {
-                    user.Profile = userUpdateRequest.Profile;
-                }
+                if (userUpdateRequest.Profile != null) user.Profile = userUpdateRequest.Profile;
 
                 dal.Update(user);
 

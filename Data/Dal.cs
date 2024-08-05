@@ -12,29 +12,31 @@ public class Dal<T> where T : class
     }
 
     #region Show
+
     public IEnumerable<T> Show()
     {
         return _context.Set<T>().ToList();
     }
+
     #endregion
 
     #region Adding
+
     public void Add(T objeto)
     {
-        this._context.Set<T>().Add(objeto);
-        this._context.SaveChanges();
+        _context.Set<T>().Add(objeto);
+        _context.SaveChanges();
     }
+
     #endregion
-    
+
     #region Adding 2
+
     public async Task AddRanger(IEnumerable<T> objeto)
     {
         try
         {
-            if (objeto == null)
-            {
-                throw new ArgumentNullException(nameof(objeto), "The object to add cannot be null.");
-            }
+            if (objeto == null) throw new ArgumentNullException(nameof(objeto), "The object to add cannot be null.");
 
             await _context.Set<T>().AddRangeAsync(objeto);
             await _context.SaveChangesAsync();
@@ -49,42 +51,53 @@ public class Dal<T> where T : class
             Console.WriteLine($"Error occurred while adding object: {ex}");
         }
     }
+
     #endregion
-    
+
     #region Update
+
     public void Update(T objeto)
     {
-        this._context.Set<T>().Update(objeto);
-        this._context.SaveChanges();
+        _context.Set<T>().Update(objeto);
+        _context.SaveChanges();
     }
+
     #endregion
-    
+
     #region Delete
+
     public void Delete(T objeto)
     {
-        this._context.Set<T>().Remove(objeto);
-        this._context.SaveChanges();
+        _context.Set<T>().Remove(objeto);
+        _context.SaveChanges();
     }
+
     #endregion
-    
+
     #region SearchFor
+
     public T? SearchFor(Func<T, bool> condicao)
     {
-        return this._context.Set<T>().FirstOrDefault(condicao);
+        return _context.Set<T>().FirstOrDefault(condicao);
     }
+
     #endregion
-    
+
     #region SearchForDay
+
     public IEnumerable<T> SearchForDay(Func<T, bool> condicao)
     {
-        return this._context.Set<T>().Where(condicao).ToList();
+        return _context.Set<T>().Where(condicao).ToList();
     }
+
     #endregion
-    
+
     #region SearchForAvailabelDays
+
     public IEnumerable<T> SearchForAvailableDaysAsync(Func<T, bool> condition)
     {
-        return  _context.Set<T>().Where(condition).ToList();
+        return _context.Set<T>().Where(condition).ToList();
     }
+
     #endregion
 }

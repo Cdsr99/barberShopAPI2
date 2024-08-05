@@ -1,19 +1,14 @@
-using System.Text;
 using BarberShopAPI2.Controllers.Endpoints;
+using BarberShopAPI2.Controllers.Endpoints.Booking;
 using BarberShopAPI2.Controllers.Endpoints.Schedules.Create;
 using BarberShopAPI2.Controllers.Endpoints.Schedules.Delete;
-using BarberShopAPI2.Controllers.Endpoints.Booking;
 using BarberShopAPI2.Controllers.Endpoints.UserEndPoint;
 using BarberShopAPI2.Controllers.Endpoints.UserEndPoint.Consult;
 using BarberShopAPI2.Controllers.Endpoints.UserLoginEndPoint;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
 using BarberShopAPI2.Profile;
-using BarberShopAPI2.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Booking = BarberShopAPI2.Models.Booking;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,10 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.EnableAnnotations();
-});
+builder.Services.AddSwaggerGen(c => { c.EnableAnnotations(); });
 
 var connString = builder.Configuration
     ["ConnectionStrings:Connection"];
@@ -32,9 +24,8 @@ var connString = builder.Configuration
 var connStringSymmetric = builder.Configuration
     ["SymmetricSecurityKey"];
 
-builder.Services.
-    AddDbContext<BarberShopContext>(option => option
-        .UseLazyLoadingProxies().UseSqlServer(connString));
+builder.Services.AddDbContext<BarberShopContext>(option => option
+    .UseLazyLoadingProxies().UseSqlServer(connString));
 
 /*
 builder.Services
@@ -77,14 +68,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
     {
-        builder.AllowAnyOrigin() // Adicione aqui a origem da sua aplicação Blazor
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-               
+        builder.AllowAnyOrigin() // Adicione aqui a origem da sua aplicaÃ§Ã£o Blazor
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
-}); 
-
-
+});
 
 
 var app = builder.Build();

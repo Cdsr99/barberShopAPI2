@@ -1,7 +1,6 @@
 using BarberShopAPI2.Controllers.Request;
 using BarberShopAPI2.Data;
 using BarberShopAPI2.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,7 +11,7 @@ public static class SchedulesCreateController
     public static void AddEndPointSchedulesCreate(this WebApplication app)
     {
         var scheduleGroup = app.MapGroup("/schedule/create").WithTags("Schedule");
-        
+
         #region Creating schedules for a single time
 
         scheduleGroup.MapPost("/hour", ([FromServices] Dal<Schedule> dal, [FromBody] ScheduleRequest body) =>
@@ -37,7 +36,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a day
 
-        scheduleGroup.MapPost("/day",  async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/day", async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {
@@ -48,25 +47,21 @@ public static class SchedulesCreateController
                 var timePerClient = settingsDal.SearchFor(a => a.Parameter == "TimePerClient");
 
                 if (start == null || end == null || timePerClient == null)
-                {
                     return Results.BadRequest("Missing time settings.");
-                }
 
-                TimeSpan startConverted = TimeSpan.Zero;
-                TimeSpan endConverted = TimeSpan.Zero;
-                TimeSpan timePerClientConverted = TimeSpan.Zero;
+                var startConverted = TimeSpan.Zero;
+                var endConverted = TimeSpan.Zero;
+                var timePerClientConverted = TimeSpan.Zero;
 
 
                 if (!TimeSpan.TryParse(start.Value, out startConverted) ||
                     !TimeSpan.TryParse(end.Value, out endConverted) ||
                     !TimeSpan.TryParse(timePerClient.Value, out timePerClientConverted))
-                {
                     return Results.BadRequest("Invalid time parameters.");
-                }
 
-                DateTime day = body.day;
-                List<Schedule> schedules = new List<Schedule>();
-                TimeSpan current = startConverted;
+                var day = body.day;
+                var schedules = new List<Schedule>();
+                var current = startConverted;
 
                 while (current <= endConverted)
                 {
@@ -93,7 +88,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a week
 
-        scheduleGroup.MapPost("/week",  async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/week", async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {
@@ -104,30 +99,26 @@ public static class SchedulesCreateController
                 var timePerClient = settingsDal.SearchFor(a => a.Parameter == "TimePerClient");
                 var daysOff = settingsDal.SearchFor(a => a.Parameter == "DaysOff");
 
-                List<string> daysOfTheWeek = JsonConvert.DeserializeObject<List<string>>(daysOff.Value);
+                var daysOfTheWeek = JsonConvert.DeserializeObject<List<string>>(daysOff.Value);
                 if (start == null || end == null || timePerClient == null)
-                {
                     return Results.BadRequest("Missing time settings.");
-                }
 
-                TimeSpan startConverted = TimeSpan.Zero;
-                TimeSpan endConverted = TimeSpan.Zero;
-                TimeSpan timePerClientConverted = TimeSpan.Zero;
+                var startConverted = TimeSpan.Zero;
+                var endConverted = TimeSpan.Zero;
+                var timePerClientConverted = TimeSpan.Zero;
 
 
                 if (!TimeSpan.TryParse(start.Value, out startConverted) ||
                     !TimeSpan.TryParse(end.Value, out endConverted) ||
                     !TimeSpan.TryParse(timePerClient.Value, out timePerClientConverted))
-                {
                     return Results.BadRequest("Invalid time parameters.");
-                }
 
-                DateTime day = body.day;
-                List<Schedule> schedules = new List<Schedule>();
-                TimeSpan current = startConverted;
+                var day = body.day;
+                var schedules = new List<Schedule>();
+                var current = startConverted;
 
 
-                for (int i = 0; i < 7; i++)
+                for (var i = 0; i < 7; i++)
                 {
                     if (daysOfTheWeek.Contains(day.DayOfWeek.ToString()))
                     {
@@ -170,7 +161,7 @@ public static class SchedulesCreateController
 
         #region Creating schedules for a month
 
-        scheduleGroup.MapPost("/month",  async ([FromServices] Dal<Schedule> scheduleDal,
+        scheduleGroup.MapPost("/month", async ([FromServices] Dal<Schedule> scheduleDal,
             [FromServices] Dal<Settings> settingsDal,
             [FromBody] ScheduleDayRequest body) =>
         {
@@ -181,30 +172,26 @@ public static class SchedulesCreateController
                 var timePerClient = settingsDal.SearchFor(a => a.Parameter == "TimePerClient");
                 var daysOff = settingsDal.SearchFor(a => a.Parameter == "DaysOff");
 
-                List<string> daysOfTheWeek = JsonConvert.DeserializeObject<List<string>>(daysOff.Value);
+                var daysOfTheWeek = JsonConvert.DeserializeObject<List<string>>(daysOff.Value);
                 if (start == null || end == null || timePerClient == null)
-                {
                     return Results.BadRequest("Missing time settings.");
-                }
 
-                TimeSpan startConverted = TimeSpan.Zero;
-                TimeSpan endConverted = TimeSpan.Zero;
-                TimeSpan timePerClientConverted = TimeSpan.Zero;
+                var startConverted = TimeSpan.Zero;
+                var endConverted = TimeSpan.Zero;
+                var timePerClientConverted = TimeSpan.Zero;
 
 
                 if (!TimeSpan.TryParse(start.Value, out startConverted) ||
                     !TimeSpan.TryParse(end.Value, out endConverted) ||
                     !TimeSpan.TryParse(timePerClient.Value, out timePerClientConverted))
-                {
                     return Results.BadRequest("Invalid time parameters.");
-                }
 
-                DateTime day = body.day;
-                List<Schedule> schedules = new List<Schedule>();
-                TimeSpan current = startConverted;
+                var day = body.day;
+                var schedules = new List<Schedule>();
+                var current = startConverted;
 
 
-                for (int i = 0; i < 30; i++)
+                for (var i = 0; i < 30; i++)
                 {
                     if (daysOfTheWeek.Contains(day.DayOfWeek.ToString()))
                     {
