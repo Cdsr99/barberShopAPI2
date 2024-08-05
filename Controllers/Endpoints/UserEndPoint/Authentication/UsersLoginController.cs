@@ -37,10 +37,5 @@ public static class UsersLoginController
 
         #endregion
 
-        #region Authenticate an User
-
-        userGroup.MapPost("/login2", () => { return Results.Ok(new {status = "success"}); });
-
-        #endregion
     }
 }
